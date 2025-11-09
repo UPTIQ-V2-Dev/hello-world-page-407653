@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# pnpm wrapper that uses npm instead
+case "$1" in
+  "install"|"i")
+    npm install "${@:2}"
+    ;;
+  "add")
+    npm install "${@:2}"
+    ;;
+  "remove"|"uninstall")
+    npm uninstall "${@:2}"
+    ;;
+  "run")
+    npm run "${@:2}"
+    ;;
+  "build")
+    npm run build
+    ;;
+  "preview")
+    npm run preview
+    ;;
+  "eslint")
+    npm run eslint
+    ;;
+  "prettier")
+    npm run prettier
+    ;;
+  "test")
+    npm test "${@:2}"
+    ;;
+  "--version"|"version")
+    echo "pnpm-wrapper 1.0.0 (using npm $(npm --version))"
+    ;;
+  *)
+    npm "$@"
+    ;;
+esac
